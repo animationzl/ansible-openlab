@@ -1,0 +1,10 @@
+---
+- name: Bootstrap bastion node.
+  hosts: bastion
+  become: yes
+
+  tasks:
+    - name: Install ansible roles via galaxy
+      command: ansible-galaxy install -v -r playbooks/roles/requirements.yaml -p playbooks/roles
+      args:
+        chdir: '{{ root_dir }}'
