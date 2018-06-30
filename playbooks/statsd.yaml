@@ -1,0 +1,7 @@
+---
+- hosts: zuul
+
+  tasks:
+    - name: Setup openstack.statsd role
+      include_role:
+        name: openstack.statsd
