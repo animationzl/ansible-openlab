@@ -12,18 +12,10 @@
 
     - name: Install apt packages
       apt:
-        name:
-          - dbus
-          - libffi-dev
-          - libssl-dev
-          - build-essential
-          - python3-dev
-          - python-dev
-          - python3-pip
-          - python-pip
+        name: '{{ apt_depends }}'
         update_cache: yes
         state: latest
 
     - name: Install pip packages
       pip:
-        name: setuptools
+        name: '{{ pip_depends }}'
