@@ -3,3 +3,4 @@
 - import_playbook: bootstrap.yaml
 - import_playbook: statsd.yaml
 - import_playbook: gearman.yaml
+- import_playbook: zookeeper.yaml
