@@ -1,0 +1,24 @@
+---
+- hosts: zuul
+  become: yes
+
+  tasks:
+    - name: Install mysql packages
+      apt:
+        name: ['mariadb-server', 'mariadb-client', 'python-pymysql', 'libmysqlclient-dev']
+        update_cache: yes
+
+    - pip: name=pymysql executable=pip3
+    - pip: name=MySQL-python
+
+    - name: Copy mysql_secure_installation.sql into place
+      copy:
+        src: '{{ root_dir }}/etc/mysql/mysql_secure_installation.sql'
+        dest: /tmp/mysql_secure_installation.sql
+        mode: 0400
+
+    - name: Execute mysql secure installation
+      mysql_db:
+        state: import
+        name: all
+        target: /tmp/mysql_secure_installation.sql

@@ -4,3 +4,4 @@
 - import_playbook: statsd.yaml
 - import_playbook: gearman.yaml
 - import_playbook: zookeeper.yaml
+- import_playbook: mysql.yaml
