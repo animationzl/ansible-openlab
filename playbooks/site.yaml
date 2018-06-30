@@ -2,3 +2,4 @@
 - import_playbook: bastion.yaml
 - import_playbook: bootstrap.yaml
 - import_playbook: statsd.yaml
+- import_playbook: gearman.yaml
