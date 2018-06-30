@@ -1,0 +1,29 @@
+---
+- hosts: all,!bastion
+  become: yes
+  serial: 1
+
+  tasks:
+    - name: Copy sources.list into place
+      copy:
+        src: etc/apt/sources.list
+        dest: /etc/apt/sources.list
+        mode: 0644
+
+    - name: Install apt packages
+      apt:
+        name:
+          - dbus
+          - libffi-dev
+          - libssl-dev
+          - build-essential
+          - python3-dev
+          - python-dev
+          - python3-pip
+          - python-pip
+        update_cache: yes
+        state: latest
+
+    - name: Install pip packages
+      pip:
+        name: setuptools
