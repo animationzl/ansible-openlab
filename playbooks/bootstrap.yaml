@@ -6,7 +6,7 @@
   tasks:
     - name: Copy sources.list into place
       copy:
-        src: '{{ root_dir }}'/etc/apt/sources.list
+        src: '{{ root_dir }}/etc/apt/sources.list'
         dest: /etc/apt/sources.list
         mode: 0644
 
