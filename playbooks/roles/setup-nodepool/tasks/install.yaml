@@ -8,9 +8,8 @@
 - name: Install nodepool requirements
   become: yes
   pip:
-    requirements: requirements.txt
+    requirements: '{{ nodepool_src_dir }}/requirements.txt'
     executable: pip3
-    chdir: '{{ nodepool_src_dir }}'
 
 - name: Install nodepool using pip
   become: yes
