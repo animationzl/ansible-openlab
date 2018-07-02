@@ -19,3 +19,38 @@
     - name: Install pip packages
       pip:
         name: '{{ pip_depends }}'
+
+    - name: Create group account
+      group:
+        name: zuul
+
+    - name: Create user account
+      user:
+        name: zuul
+        group: zuul
+        home: /home/zuul
+        createhome: yes
+
+    - name: Create ssh directory
+      file:
+        dest: /home/zuul/.ssh
+        owner: zuul
+        group: zuul
+        mode: 0700
+        state: directory
+
+    - name: Create ssh private key
+      template:
+        src: ~/.ssh/id_rsa
+        dest: /home/zuul/.ssh/id_rsa
+        owner: zuul
+        group: zuul
+        mode: 0600
+
+    - name: Create ssh public key
+      template:
+        src: ~/.ssh/id_rsa.pub
+        dest: /home/zuul/.ssh/id_rsa.pub
+        owner: zuul
+        group: zuul
+        mode: 0644

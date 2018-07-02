@@ -1,1 +1,6 @@
 ---
+- hosts: nodepool
+  become: yes
+
+  roles:
+    - setup-nodepool

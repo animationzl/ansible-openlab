@@ -7,3 +7,8 @@
       command: ansible-galaxy install -v -r playbooks/roles/requirements.yaml -p playbooks/roles
       args:
         chdir: '{{ root_dir }}'
+
+    - name: Create SSH keys if missing
+      command: ssh-keygen -t rsa -f ~/.ssh/id_rsa -N ''
+      args:
+        creates: ~/.ssh/id_rsa
