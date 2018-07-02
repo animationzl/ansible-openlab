@@ -1,7 +1,5 @@
 ---
 - hosts: zuul
 
-  tasks:
-    - name: Setup openstack.zookeeper role
-      include_role:
-        name: openstack.zookeeper
+  roles:
+    - openstack.zookeeper

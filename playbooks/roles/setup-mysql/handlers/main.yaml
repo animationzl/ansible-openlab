@@ -1,0 +1,6 @@
+---
+- name: Execute mysql secure installation
+  mysql_db:
+    state: import
+    name: all
+    target: /tmp/mysql_secure_installation.sql

@@ -1,0 +1,2 @@
+---
+init_sql_file: '{{ root_dir }}/etc/mysql/mysql_secure_installation.sql'
