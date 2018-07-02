@@ -1,0 +1,15 @@
+---
+nodepool_src_dir: /root/src/git.openstack.org/openstack-infra/nodepool
+
+directory_depends:
+  - /etc/nodepool
+  - /etc/nodepool/elements
+  - /opt/dib_tmp
+  - /opt/dib_cache
+  - /var/log/nodepool
+
+config_files:
+  - builder-logging.conf
+  - launcher-logging.conf
+  - nodepool.yaml
+  - repos.yaml

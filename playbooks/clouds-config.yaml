@@ -1,0 +1,18 @@
+---
+- hosts: nodepool
+  become: yes
+
+  tasks:
+    - name: Create directory /etc/openstack
+      become: yes
+      file:
+        path: /etc/openstack
+        state: directory
+        mode: 0755
+
+    - name: Install clouds config
+      become: yes
+      template:
+        src: '{{ root_dir }}/etc/clouds.yaml'
+        dest: '/etc/openstack/clouds.yaml'
+        mode: 0644

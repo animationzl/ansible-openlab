@@ -5,3 +5,5 @@
 - import_playbook: gearman.yaml
 - import_playbook: zookeeper.yaml
 - import_playbook: mysql.yaml
+- import_playbook: clouds-config.yaml
+- import_playbook: nodepool.yaml

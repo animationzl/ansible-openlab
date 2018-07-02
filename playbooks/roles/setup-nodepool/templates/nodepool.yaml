@@ -1,0 +1,58 @@
+images-dir: /opt/dib_tmp
+elements-dir: /etc/nodepool/elements
+
+zookeeper-servers:
+  - host: {{ hostvars.zuul.ansible_host }}
+
+diskimages:
+  - name: ubuntu-xenial
+    elements:
+      - ubuntu
+      - vm
+      - simple-init
+      - nodepool-base
+      - cache-devstack
+      - initialize-urandom
+      - growroot
+      - infra-package-needs
+    release: xenial
+    env-vars:
+      TMPDIR: /opt/dib_tmp
+      DIB_CHECKSUM: 1
+      DIB_IMAGE_CACHE: /opt/dib_cache
+      DIB_APT_LOCAL_CACHE: 0
+      DIB_DISABLE_APT_CLEANUP: 1
+      DIB_GRUB_TIMEOUT: 0
+      DIB_DEBIAN_COMPONENTS: main,universe
+      DIB_CUSTOM_PROJECTS_LIST_URL: file:///etc/nodepool/repos.yaml
+      DIB_DEV_USER_PWDLESS_SUDO: 1
+      DIB_CLOUD_INIT_DATASOURCES: OpenStack
+      ZUUL_USER_SSH_PUBLIC_KEY: /home/zuul/.ssh/id_rsa.pub
+
+labels:
+  - name: ubuntu-xenial
+    min-ready: 1
+
+providers:
+  - name: otc-aio
+    cloud: otc
+    driver: openstack
+    launch-timeout: 1200
+    boot-timeout: 1200
+    image-name-format: 'aio-{image_name}-{timestamp}'
+    diskimages:
+      - name: ubuntu-xenial
+        config-drive: true
+    pools:
+      - name: otc-aio
+        max-servers: 3
+        networks:
+          - openlab-net
+        labels:
+          - name: ubuntu-xenial
+            diskimage: ubuntu-xenial
+            flavor-name: s2.2xlarge.1
+
+webapp:
+  port: 8005
+  listen_address: '0.0.0.0'

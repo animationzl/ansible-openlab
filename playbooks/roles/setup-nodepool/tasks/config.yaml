@@ -1,0 +1,19 @@
+---
+- name: Create directory depends
+  become: yes
+  file:
+    path: '{{ item }}'
+    owner: nodepool
+    group: nodepool
+    state: directory
+  with_items: '{{ directory_depends }}'
+
+- name: Install nodepool configuration
+  become: yes
+  template:
+    src: '{{ item }}'
+    dest: '/etc/nodepool/{{ item }}'
+    owner: nodepool
+    group: nodepool
+    mode: 0644
+  with_items: '{{ config_files }}'

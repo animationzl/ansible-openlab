@@ -1,0 +1,13 @@
+---
+- name: Create group account
+  become: yes
+  group:
+    name: nodepool
+
+- name: Create user account
+  become: yes
+  user:
+    name: nodepool
+    group: nodepool
+    home: /home/nodepool
+    createhome: yes

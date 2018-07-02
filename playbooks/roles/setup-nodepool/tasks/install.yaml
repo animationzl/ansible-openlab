@@ -1,0 +1,20 @@
+---
+- name: Git clone nodepool
+  become: yes
+  git:
+    repo: https://git.openstack.org/openstack-infra/nodepool
+    dest: '{{ nodepool_src_dir }}'
+
+- name: Install nodepool requirements
+  become: yes
+  pip:
+    requirements: requirements.txt
+    executable: pip3
+    chdir: '{{ nodepool_src_dir }}'
+
+- name: Install nodepool using pip
+  become: yes
+  pip:
+    name: 'file://{{ nodepool_src_dir }}'
+    executable: pip3
+    extra_args: -e
