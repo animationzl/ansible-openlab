@@ -13,3 +13,6 @@ apt_depends:
 
 pip_depends:
   - setuptools
+
+pip3_depends:
+  - setuptools

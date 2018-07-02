@@ -20,6 +20,11 @@
       pip:
         name: '{{ pip_depends }}'
 
+    - name: Install pip3 packages
+      pip:
+        name: '{{ pip3_depends }}'
+        executable: pip3
+
     - name: Create group account
       group:
         name: zuul
