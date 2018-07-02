@@ -13,6 +13,6 @@
     - name: Install clouds config
       become: yes
       template:
-        src: '{{ root_dir }}/etc/clouds.yaml'
+        src: '{{ root_dir }}/etc/openstack/clouds.yaml'
         dest: '/etc/openstack/clouds.yaml'
         mode: 0644
