@@ -1,5 +1,6 @@
 ---
 nodepool_src_dir: '{{ ansible_user_dir }}/src/git.openstack.org/openstack-infra/nodepool'
+project_config_src_dir: '{{ ansible_user_dir }}/src/git.openstack.org/openstack-infra/project-config'
 
 directory_depends:
   - /etc/nodepool
