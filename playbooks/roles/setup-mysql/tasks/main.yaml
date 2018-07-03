@@ -2,8 +2,19 @@
 - name: Install apt packages
   become: yes
   apt:
-    name: ['mariadb-server', 'mariadb-client', 'python-pymysql']
+    name: ['mariadb-server', 'mariadb-client', 'python-pymysql', 'libmysqlclient-dev']
     update_cache: yes
+
+- name: Install pip packages
+  become: yes
+  pip:
+    name: MySQL-python
+
+- name: Install pip3 packages
+  become: yes
+  pip:
+    name: pymysql
+    executable: pip3
 
 - name: Copy mysql_secure_installation.sql into place
   become: yes
