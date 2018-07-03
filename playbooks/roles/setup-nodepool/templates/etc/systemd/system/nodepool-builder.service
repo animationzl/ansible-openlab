@@ -6,9 +6,7 @@ After=syslog.target network.target
 Type=simple
 # Options to pass to nodepool-builder.
 Environment="ARGS=-l /etc/nodepool/builder-logging.conf"
-Group=nodepool
-User=nodepool
-ExecStart={{ nodepool_pip_virtualenv | default('/usr/local') }}/bin/nodepool-builder -d $ARGS
+ExecStart=/usr/local/bin/nodepool-builder -d $ARGS
 
 [Install]
 WantedBy=multi-user.target
