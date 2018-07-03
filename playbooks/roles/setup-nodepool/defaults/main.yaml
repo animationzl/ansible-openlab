@@ -7,9 +7,19 @@ directory_depends:
   - /opt/dib_tmp
   - /opt/dib_cache
   - /var/log/nodepool
+  - /etc/openstack
 
 config_files:
-  - builder-logging.conf
-  - launcher-logging.conf
-  - nodepool.yaml
-  - repos.yaml
+  - etc/nodepool/builder-logging.conf
+  - etc/nodepool/launcher-logging.conf
+  - etc/nodepool/nodepool.yaml
+  - etc/nodepool/repos.yaml
+  - etc/clouds.yaml
+
+systemd_files:
+  - etc/systemd/system/nodepool-builder.service
+  - etc/systemd/system/nodepool-launcher.service
+
+nodepool_services:
+  - nodepool-builder
+  - nodepool-launcher

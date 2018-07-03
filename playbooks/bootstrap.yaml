@@ -1,35 +1,40 @@
 ---
 - hosts: all,!bastion
-  become: yes
   serial: 1
 
   tasks:
     - name: Copy sources.list into place
+      become: yes
       copy:
         src: '{{ root_dir }}/etc/apt/sources.list'
         dest: /etc/apt/sources.list
         mode: 0644
 
     - name: Install apt packages
+      become: yes
       apt:
         name: '{{ apt_depends }}'
         update_cache: yes
         state: latest
 
     - name: Install pip packages
+      become: yes
       pip:
         name: '{{ pip_depends }}'
 
     - name: Install pip3 packages
+      become: yes
       pip:
         name: '{{ pip3_depends }}'
         executable: pip3
 
     - name: Create group account
+      become: yes
       group:
         name: zuul
 
     - name: Create user account
+      become: yes
       user:
         name: zuul
         group: zuul
@@ -37,6 +42,7 @@
         createhome: yes
 
     - name: Create ssh directory
+      become: yes
       file:
         dest: /home/zuul/.ssh
         owner: zuul
@@ -45,6 +51,7 @@
         state: directory
 
     - name: Create ssh private key
+      become: yes
       template:
         src: ~/.ssh/id_rsa
         dest: /home/zuul/.ssh/id_rsa
@@ -53,6 +60,7 @@
         mode: 0600
 
     - name: Create ssh public key
+      become: yes
       template:
         src: ~/.ssh/id_rsa.pub
         dest: /home/zuul/.ssh/id_rsa.pub

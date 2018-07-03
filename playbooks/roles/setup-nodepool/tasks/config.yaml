@@ -5,6 +5,7 @@
     path: '{{ item }}'
     owner: nodepool
     group: nodepool
+    mode: 0755
     state: directory
   with_items: '{{ directory_depends }}'
 
@@ -12,7 +13,7 @@
   become: yes
   template:
     src: '{{ item }}'
-    dest: '/etc/nodepool/{{ item }}'
+    dest: '/{{ item }}'
     owner: nodepool
     group: nodepool
     mode: 0644

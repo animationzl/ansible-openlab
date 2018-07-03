@@ -1,6 +1,5 @@
 ---
 - hosts: bastion
-  become: yes
 
   tasks:
     - name: Install ansible roles via galaxy

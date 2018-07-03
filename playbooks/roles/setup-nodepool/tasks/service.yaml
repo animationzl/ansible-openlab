@@ -1,2 +1,17 @@
 ---
+- name: Install nodepool service scripts into place
+  become: yes
+  template:
+    src: '{{ item }}'
+    dest: '/{{ item }}'
+    mode: 0644
+  with_items: '{{ systemd_files }}'
 
+- name: Enable nodepool services
+  become: yes
+  systemd:
+    daemon_reload: yes
+    enabled: yes
+    name: '{{ item }}'
+    state: restarted
+  with_items: '{{ nodepool_services }}'

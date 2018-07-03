@@ -1,12 +1,14 @@
 ---
 - name: Install mysql packages
+  become: yes
   apt:
     name: ['mariadb-server', 'mariadb-client']
     update_cache: yes
 
 - name: Copy mysql_secure_installation.sql into place
+  become: yes
   copy:
-    src: '{{ init_sql_file }}'
+    src: mysql_secure_installation.sql
     dest: /tmp/mysql_secure_installation.sql
     mode: 0400
   notify:

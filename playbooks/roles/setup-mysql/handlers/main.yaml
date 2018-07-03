@@ -1,5 +1,6 @@
 ---
 - name: Execute mysql secure installation
+  become: yes
   mysql_db:
     state: import
     name: all

@@ -1,9 +1,9 @@
 ---
 - hosts: zuul
-  become: yes
 
   tasks:
     - name: Install gearman
+      become: yes
       apt:
         name: gearman-job-server
         update_cache: yes

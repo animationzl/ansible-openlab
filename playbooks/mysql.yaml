@@ -1,6 +1,5 @@
 ---
 - hosts: zuul
-  become: yes
 
   roles:
     - setup-mysql
