@@ -2,20 +2,8 @@
 - name: Install apt packages
   become: yes
   apt:
-    name: ['mariadb-server', 'mariadb-client', 'libmariadb-client-lgpl-dev']
+    name: ['mariadb-server', 'mariadb-client', 'python-pymysql']
     update_cache: yes
-
-- name: Create symbolic link for mysql_config
-  become: yes
-  file:
-    src: /usr/bin/mariadb_config
-    dest: /usr/bin/mysql_config
-    state: link
-
-- name: Install pip packages
-  become: yes
-  pip:
-    name: 'MySQL-python'
 
 - name: Copy mysql_secure_installation.sql into place
   become: yes

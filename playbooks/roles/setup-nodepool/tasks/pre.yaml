@@ -11,3 +11,10 @@
     group: nodepool
     home: /home/nodepool
     createhome: yes
+
+- name: Install apt packages
+  become: yes
+  apt:
+    name: '{{ apt_depends }}'
+    update_cache: yes
+    state: latest
