@@ -15,7 +15,7 @@ config_files:
   - etc/nodepool/launcher-logging.conf
   - etc/nodepool/nodepool.yaml
   - etc/nodepool/repos.yaml
-  - etc/clouds.yaml
+  - etc/openstack/clouds.yaml
 
 systemd_files:
   - etc/systemd/system/nodepool-builder.service
